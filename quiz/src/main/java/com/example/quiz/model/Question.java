@@ -2,10 +2,16 @@ package com.example.quiz.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Question {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -18,56 +24,9 @@ public class Question {
     @JoinColumn(name = "quiz_id")
     @JsonIgnore
     private Quiz quiz;
+    private String type;
     @OneToMany(mappedBy = "question")
     @JsonIgnore
     private Set<QuizAnswer> quizAnswers;
-    public Question(){}
 
-    public Question(long id, Set<Answer> answers, String title, Quiz quiz, Set<QuizAnswer> quizAnswers) {
-        this.id = id;
-        this.answers = answers;
-        this.title = title;
-        this.quiz = quiz;
-        this.quizAnswers = quizAnswers;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Set<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(Set<Answer> answers) {
-        this.answers = answers;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Quiz getQuiz() {
-        return quiz;
-    }
-
-    public void setQuiz(Quiz quiz) {
-        this.quiz = quiz;
-    }
-
-    public Set<QuizAnswer> getQuizAnswers() {
-        return quizAnswers;
-    }
-
-    public void setQuizAnswers(Set<QuizAnswer> quizAnswers) {
-        this.quizAnswers = quizAnswers;
-    }
 }

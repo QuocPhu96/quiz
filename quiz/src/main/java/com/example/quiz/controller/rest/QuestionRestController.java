@@ -33,6 +33,7 @@ public class QuestionRestController {
             questionResponseDTO.setId(question.getId());
             questionResponseDTO.setAnswers(question.getAnswers());
             questionResponseDTO.setTitle(question.getTitle());
+            questionResponseDTO.setType(question.getType());
             questionResponseDTOS.add(questionResponseDTO);
         }
         return ResponseEntity.ok(questionResponseDTOS);
